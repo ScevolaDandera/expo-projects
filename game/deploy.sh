@@ -1,4 +1,5 @@
 #!/bin/bash
-wget https://github.com/ScevolaDandera/expo-projects/blob/main/game/build.zip
+rm build.zip
 rm -rf web-build
+wget https://github.com/ScevolaDandera/expo-projects/raw/main/game/build.zip
 unzip build.zip

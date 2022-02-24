@@ -10,7 +10,7 @@ export const HomeScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Button title='Sign Out' onPress={handleLogout} />
+      <Button title='Sign Out #' onPress={handleLogout} />
     </View>
   );
 };
