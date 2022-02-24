@@ -1,14 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from '../screens/HomeScreen';
+import { HomeScreen } from '../screens';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+export const AppStack = () => {
   return (
-    <Stack.Navigator headerMode='none'>
+    <Stack.Navigator>
       <Stack.Screen name='Home' component={HomeScreen} />
     </Stack.Navigator>
   );
-}
+};

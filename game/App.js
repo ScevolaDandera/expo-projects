@@ -1,36 +1,17 @@
-import * as React from 'react';
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Routes from './navigation/index';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// function HomeScreen() {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Home Screen: 1</Text>
-//     </View>
-//   );
-// }
+import { RootNavigator } from './navigation/RootNavigator';
+import { AuthenticatedUserProvider } from './providers';
 
-// const Stack = createNativeStackNavigator();
+const App = () => {
+  return (
+    <AuthenticatedUserProvider>
+      <SafeAreaProvider>
+        <RootNavigator />
+      </SafeAreaProvider>
+    </AuthenticatedUserProvider>
+  );
+};
 
-export default function App() {
-  // return (
-  //   <NavigationContainer>
-  //     <Stack.Navigator>
-  //       <Stack.Screen name="Home" component={HomeScreen} />
-  //     </Stack.Navigator>
-  //   </NavigationContainer>
-  // );
-  return <Routes />;
-}
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+export default App;

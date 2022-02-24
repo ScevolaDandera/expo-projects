@@ -1,16 +1,3 @@
-import React from 'react';
+import { RootNavigator } from './RootNavigator';
 
-import { AuthenticatedUserProvider } from './AuthenticatedUserProvider';
-import RootNavigator from './RootNavigator';
-
-/**
- * Wrap all providers here
- */
-
-export default function Routes() {
-  return (
-    <AuthenticatedUserProvider>
-      <RootNavigator />
-    </AuthenticatedUserProvider>
-  );
-}
+export { RootNavigator };

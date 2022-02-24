@@ -1,44 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, ActivityIndicator } from 'react-native';
+import { onAuthStateChanged } from 'firebase/auth';
 
-import Firebase from '../config/firebase';
-import { AuthenticatedUserContext } from './AuthenticatedUserProvider';
-import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
+import { AuthStack } from './AuthStack';
+import { AppStack } from './AppStack';
+import { AuthenticatedUserContext } from '../providers';
+import { LoadingIndicator } from '../components';
+import { auth } from '../config';
 
-const auth = Firebase.auth();
+export const RootNavigator = () => {
+  const { user, setUser } = useContext(AuthenticatedUserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default function RootNavigator() {
-    const { user, setUser } = useContext(AuthenticatedUserContext);
-    const [isLoading, setIsLoading] = useState(true);
-  
-    useEffect(() => {
-      // onAuthStateChanged returns an unsubscriber
-      const unsubscribeAuth = auth.onAuthStateChanged(async authenticatedUser => {
-        try {
-          await (authenticatedUser ? setUser(authenticatedUser) : setUser(null));
-          setIsLoading(false);
-        } catch (error) {
-          console.log(error);
-        }
-      });
-  
-      // unsubscribe auth listener on unmount
-      return unsubscribeAuth;
-    }, []);
-  
-    if (isLoading) {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size='large' />
-        </View>
-      );
-    }
-  
-    return (
-      <NavigationContainer>
-        {user ? <HomeStack /> : <AuthStack />}
-      </NavigationContainer>
+  useEffect(() => {
+    // onAuthStateChanged returns an unsubscriber
+    const unsubscribeAuthStateChanged = onAuthStateChanged(
+      auth,
+      authenticatedUser => {
+        authenticatedUser ? setUser(authenticatedUser) : setUser(null);
+        setIsLoading(false);
+      }
     );
+
+    // unsubscribe auth listener on unmount
+    return unsubscribeAuthStateChanged;
+  }, [user]);
+
+  if (isLoading) {
+    return <LoadingIndicator />;
   }
+
+  return (
+    <NavigationContainer>
+      {user ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
+};

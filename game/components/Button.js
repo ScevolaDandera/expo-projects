@@ -1,60 +1,39 @@
-import React from 'react';
-import { StyleSheet, Pressable, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { Pressable, Text, StyleSheet } from 'react-native';
 
-const Button = ({
-  title,
-  backgroundColor = '#000',
-  titleColor = '#fff',
-  titleSize = 14,
+import { Colors } from '../config';
+
+export const Button = ({
+  children,
   onPress,
-  width = '100%',
-  containerStyle
+  activeOpacity = 0.3,
+  borderless = false,
+  title,
+  style
 }) => {
-  return (
-    <Pressable
-      onPress={onPress}
-      style={args => {
-        if (args.pressed) {
-          return [
-            styles.base,
-            {
-              opacity: 0.5,
-              backgroundColor,
-              width
-            },
-            containerStyle
-          ];
-        }
+  const _style = useCallback(({ pressed }) => [
+    style,
+    { opacity: pressed ? activeOpacity : 1 }
+  ]);
 
-        return [
-          styles.base,
-          {
-            opacity: 1,
-            backgroundColor,
-            width
-          },
-          containerStyle
-        ];
-      }}
-    >
-      <Text style={[styles.text, { color: titleColor, fontSize: titleSize }]}>
-        {title}
-      </Text>
+  if (borderless) {
+    return (
+      <Pressable onPress={onPress} style={_style}>
+        <Text style={styles.borderlessButtonText}>{title}</Text>
+      </Pressable>
+    );
+  }
+
+  return (
+    <Pressable onPress={onPress} style={_style}>
+      {children}
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontWeight: '600'
-  },
-  base: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 42,
-    borderRadius: 4,
-    paddingHorizontal: 12
+  borderlessButtonText: {
+    fontSize: 16,
+    color: Colors.blue
   }
 });
-
-export default Button;

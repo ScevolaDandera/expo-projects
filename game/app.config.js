@@ -2,33 +2,24 @@ import 'dotenv/config';
 
 export default {
   expo: {
-    name: "game",
-    slug: "game",
-    version: "1.0.0",
-    orientation: "portrait",
-    icon: "./assets/icon.png",
+    name: 'Expo Firebase Starter',
+    slug: 'expo-firebase',
+    privacy: 'public',
+    platforms: ['ios', 'android'],
+    version: '0.15.0',
+    orientation: 'portrait',
+    icon: './assets/flame.png',
     splash: {
-      image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#ffffff"
+      image: './assets/splash.png',
+      resizeMode: 'cover',
+      backgroundColor: '#F57C00'
     },
     updates: {
       fallbackToCacheTimeout: 0
     },
-    assetBundlePatterns: [
-      "**/*"
-    ],
+    assetBundlePatterns: ['**/*'],
     ios: {
       supportsTablet: true
-    },
-    android: {
-      adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
-        backgroundColor: "#FFFFFF"
-      }
-    },
-    web: {
-      favicon: "./assets/favicon.png"
     },
     extra: {
       apiKey: process.env.API_KEY,

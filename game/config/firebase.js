@@ -1,8 +1,8 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 import Constants from 'expo-constants';
 
-// Initialize Firebase
+// add firebase config
 const firebaseConfig = {
   apiKey: Constants.manifest.extra.apiKey,
   authDomain: Constants.manifest.extra.authDomain,
@@ -11,12 +11,11 @@ const firebaseConfig = {
   messagingSenderId: Constants.manifest.extra.messagingSenderId,
   appId: Constants.manifest.extra.appId
 };
-console.log(firebaseConfig.apiKey);
 
-let Firebase;
+// initialize firebase
+initializeApp(firebaseConfig);
 
-if (firebase.apps.length === 0) {
-  Firebase = firebase.initializeApp(firebaseConfig);
-}
+// initialize auth
+const auth = getAuth();
 
-export default Firebase;
+export { auth };

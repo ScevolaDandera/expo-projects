@@ -1,6 +1,17 @@
-import IconButton from './IconButton';
-import Button from './Button';
-import ErrorMessage from './ErrorMessage';
-import InputField from './InputField';
+import { TextInput } from './TextInput';
+import { View } from './View';
+import { Logo } from './Logo';
+import { Icon } from './Icon';
+import { Button } from './Button';
+import { FormErrorMessage } from './FormErrorMessage';
+import { LoadingIndicator } from './LoadingIndicator';
 
-export { IconButton, Button, ErrorMessage, InputField };
+export {
+  View,
+  TextInput,
+  Logo,
+  Icon,
+  Button,
+  FormErrorMessage,
+  LoadingIndicator
+};
