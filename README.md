@@ -4,3 +4,4 @@ expo install firebase dotenv expo-constants react-native-gesture-handler react-n
 cd game
 npm install
 expo build:web
+test
