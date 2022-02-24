@@ -17,8 +17,3 @@ jobs:
      
           script: |
             cd ../var/www/expo/expo-projects/
-            git reset --hard main
-            git pull
-            cd game
-            npm install
-            expo build:web
