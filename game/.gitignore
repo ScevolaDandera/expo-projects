@@ -7,7 +7,6 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-build.zip
 deploy.sh
 web-build/
 web-report/
