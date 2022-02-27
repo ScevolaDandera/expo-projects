@@ -4,7 +4,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import { AuthStack } from './AuthStack';
 import { AppStack } from './AppStack';
-import  BottomTabNavigator  from './TabNavigator';
 
 import { AuthenticatedUserContext } from '../providers';
 import { LoadingIndicator } from '../components';
@@ -34,7 +33,7 @@ export const RootNavigator = () => {
 
   return (
     <NavigationContainer>
-      {user ? <BottomTabNavigator /> : <AuthStack />}
+      {user ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
