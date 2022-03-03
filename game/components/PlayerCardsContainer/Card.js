@@ -4,6 +4,8 @@ import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, 
 import { PanGestureHandler } from "react-native-gesture-handler";
 
 
+
+
 function Card(props) {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -16,11 +18,21 @@ function Card(props) {
     onActive: (event, ctx) => {
       translateX.value = event.translationX + ctx.translateX;
       translateY.value = event.translationY + ctx.translateY;
+      console.log("value: ");
       console.log(translateY.value);
+      console.log(translateX.value);
     },
     onEnd: (event, ctx) => {
-      translateX.value = withSpring(0);
-      translateY.value = withSpring(0);
+      if(translateY.value < -100) {
+        console.log("greater than 100");
+        // translateX.value = withSpring(event.translationX);
+        // translateY.value = withSpring(event.translationY);
+      }
+      else {
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+      }
+    
     }
   });
 
@@ -34,16 +46,18 @@ function Card(props) {
   });
   return (
 
-    
-    <Animated.View style={[styles.container, props.style, rStyle]}>
-      <PanGestureHandler onGestureEvent={panGenstureEvent}>
-      <Image
-        source={require("../../assets/deck/backR.png")}
-        style={styles.image}
-      ></Image>
-       </PanGestureHandler>
-    </Animated.View>
-   
+
+
+    <PanGestureHandler onGestureEvent={panGenstureEvent}>
+      <Animated.View style={[styles.container, props.style, rStyle]}>
+        <Image
+          source={props.imagesrc}
+          style={styles.image}
+        ></Image>
+      </Animated.View>
+    </PanGestureHandler>
+
+
 
   );
 }

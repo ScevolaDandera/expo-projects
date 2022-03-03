@@ -5,27 +5,14 @@ import Card from "./Card";
 function PlayerCardsArea(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Card></Card>
-      </TouchableOpacity>
+            {
+        props.cardArray.map(( {id, name, image }) => (
+          <TouchableOpacity key={id} style={styles.button} onPress={props.touchCard}>
+            <Card imagesrc={image} />
+        </TouchableOpacity>
+        ))
+      }
+  
     </View>
   );
 }
