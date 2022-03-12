@@ -21,6 +21,7 @@ export default {
     ios: {
       supportsTablet: true
     },
+    plugins: ["@logrocket/react-native"],
     extra: {
       apiKey: process.env.API_KEY,
       authDomain: process.env.AUTH_DOMAIN,

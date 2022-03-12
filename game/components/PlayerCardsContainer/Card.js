@@ -18,15 +18,10 @@ function Card(props) {
     onActive: (event, ctx) => {
       translateX.value = event.translationX + ctx.translateX;
       translateY.value = event.translationY + ctx.translateY;
-      console.log("value: ");
-      console.log(translateY.value);
-      console.log(translateX.value);
     },
     onEnd: (event, ctx) => {
       if(translateY.value < -100) {
         console.log("greater than 100");
-        // translateX.value = withSpring(event.translationX);
-        // translateY.value = withSpring(event.translationY);
       }
       else {
         translateX.value = withSpring(0);
