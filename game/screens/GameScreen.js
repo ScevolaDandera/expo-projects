@@ -1,9 +1,11 @@
 import React, {useState, useEffect } from 'react';
-import { View, StyleSheet, StatusBar} from 'react-native';
+import { View, StyleSheet, StatusBar, Dimensions } from 'react-native';
 import GameControlBottomArea from "../components/BottomGameControls/GameControlBottomArea";
 import PlayerCardsArea from "../components/PlayerCardsContainer/PlayerCardsArea";
 import PlayersTableContainer from "../components/PlayersTableContainer/PlayersTableContainer";
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 export const GameScreen = () => {
@@ -23,8 +25,7 @@ export const GameScreen = () => {
       name: "Card 3",
       image: require("../assets/deck/3C.png")
     }];
-
-    const stack = [
+  let stack = [
       {
         id: 4,
         name: "Card 4",
@@ -40,8 +41,7 @@ export const GameScreen = () => {
         name: "Card 6",
         image: require("../assets/deck/6C.png")
       }];
-
-      const wasteStack = [
+  let wasteStack = [
         {
           id: 7,
           name: "Card 7",
@@ -57,8 +57,7 @@ export const GameScreen = () => {
           name: "Card 9",
           image: require("../assets/deck/9C.png")
         }];
-
-        const transitStack = [
+  let transitStack = [
           {
             id: 10,
             name: "Card 10",
@@ -109,8 +108,7 @@ export const GameScreen = () => {
     <View style={styles.container}>
       <StatusBar hidden={true} />
       <PlayersTableContainer style={styles.playerTableArea} />
-      <PlayerCardsArea style={styles.playerCardsArea} cardArray={cardsArray} touchCard={onPressCard}> 
-      </PlayerCardsArea>
+      <PlayerCardsArea style={styles.playerCardsArea} cardArray={cardsArray} touchCard={onPressCard} /> 
       <GameControlBottomArea style={styles.gameControlBottomArea}/>
     </View>
   );
@@ -120,12 +118,13 @@ export const GameScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
-    backgroundColor: "rgba(15,23,17,1)"
+    justifyContent: 'space-between',
+    backgroundColor: "yellow",
+    height: '100%'
   },
   playerTableArea: {
-    flexGrow: 1,
+    flex: 1,
   },
   playerCardsArea: {
     height: 120,
